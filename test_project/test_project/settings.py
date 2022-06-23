@@ -121,3 +121,8 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTHENTICATION_BACKENDS = ['password_expiration.backends.PasswordExpirationBackend']
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+MAIL_PASSWORD_EXPIRATION_FROM_EMAIL = "fabian@windschatten.it"
+MAIL_PASSWORD_EXPIRATION_REPLY_TO_EMAIL = "fabian@windschatten.it"

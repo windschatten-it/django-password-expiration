@@ -29,7 +29,7 @@ class PasswordExpirationBackend(ModelBackend):
 
             if not user.check_password(password) and self.user_can_authenticate(user):
 
-                if not user.is_superuser and qs.count() < settings.PASSWORD_INCORRECT_ATTEMPTS - 1:
+                if not user.is_superuser and qs.count() < settings.PASSWORD_EXPIRATION_INCORRECT_ATTEMPTS - 1:
                     WrongPasswordEntries.objects.create(user=user)
                 else:
                     user.is_active = False
