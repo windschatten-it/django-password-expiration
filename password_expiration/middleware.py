@@ -36,7 +36,8 @@ class PasswordExpirationMiddleware:
         # the view is called.
 
         if request.path == settings.PASSWORD_EXPIRATION_PASSWORD_CHANGE_DONE_URL:
-            password_changed, _ = PasswordChanged.objects.get_or_create(user=request.user)
+            PasswordChanged.objects.filter(user=request.user).delete()
+            password_changed = PasswordChanged.objects.create(user=request.user)
             password_changed.save()
 
         return response
