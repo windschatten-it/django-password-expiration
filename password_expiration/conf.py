@@ -16,7 +16,7 @@ class Settings(AppSettings):
     LOGIN_URL = '/admin/login/'
     JSI18N_URL = '/admin/jsi18n/'
 
-    EXCLUDE_PATHS = (PASSWORD_CHANGE_URL, LOGIN_URL, LOGOUT_URL, JSI18N_URL)
+    EXCLUDE_PATHS = (PASSWORD_CHANGE_URL, PASSWORD_CHANGE_DONE_URL, LOGIN_URL, LOGOUT_URL, JSI18N_URL)
 
     MESSAGES_PASSWORD_EXPIRED = "Your password is expired and must be changed."
     MESSAGES_PASSWORD_EXPIRES_SOON = "Your password expires in %s days."

@@ -44,7 +44,7 @@ class PasswordExpirationMiddleware:
             password_changed = PasswordChanged.objects.get(user=user)
         except PasswordChanged.DoesNotExist:
             return True
-        return timezone.now() > (password_changed.updated_at + timedelta(days=settings.PASSWORD_EXPIRES_AFTER_DAYS))
+        return timezone.now() > (password_changed.updated_on + timedelta(days=settings.PASSWORD_EXPIRES_AFTER_DAYS))
 
     def is_password_expires_soon(self, user):
         try:
@@ -53,11 +53,11 @@ class PasswordExpirationMiddleware:
             return True
 
         return timezone.now() > (
-                password_changed.updated_at + timedelta(days=settings.PASSWORD_EXPIRES_SOON_AFTER_DAYS))
+                password_changed.updated_on + timedelta(days=settings.PASSWORD_EXPIRES_SOON_AFTER_DAYS))
 
     def get_remaining_days(self, user):
         password_changed = PasswordChanged.objects.get(user=user)
-        end = password_changed.updated_at + timedelta(days=settings.PASSWORD_EXPIRES_AFTER_DAYS)
+        end = password_changed.updated_on + timedelta(days=settings.PASSWORD_EXPIRES_AFTER_DAYS)
         begin = timezone.now()
         delta = end - begin
         return delta.days
