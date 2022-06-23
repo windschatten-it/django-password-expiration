@@ -19,7 +19,7 @@ class Settings(AppSettings):
     EXCLUDE_PATHS = (PASSWORD_CHANGE_URL, PASSWORD_CHANGE_DONE_URL, LOGIN_URL, LOGOUT_URL, JSI18N_URL)
 
     MESSAGES_PASSWORD_EXPIRED = "Your password is expired and must be changed."
-    MESSAGES_PASSWORD_EXPIRES_SOON = "Your password expires in %s days."
+    MESSAGES_PASSWORD_EXPIRES_SOON = "Your password expires in %s days. <a href='%s'>Change Password</a>"
 
 
 settings = Settings()

@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.utils import timezone
+from django.utils.safestring import mark_safe
 
 from password_expiration.conf import settings
 from password_expiration.models import PasswordChanged
@@ -26,8 +27,9 @@ class PasswordExpirationMiddleware:
                 return redirect(settings.PASSWORD_CHANGE_URL)
 
             if self.is_password_expires_soon(request.user):
-                messages.warning(request,
-                                 settings.MESSAGES_PASSWORD_EXPIRES_SOON % self.get_remaining_days(request.user))
+                msg = mark_safe(settings.MESSAGES_PASSWORD_EXPIRES_SOON % (
+                                 self.get_remaining_days(request.user), settings.PASSWORD_CHANGE_URL))
+                messages.warning(request,msg)
 
         response = self.get_response(request)
         # Code to be executed for each request/response after
